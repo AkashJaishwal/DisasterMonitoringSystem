@@ -25,7 +25,15 @@ def fetch_odisha_cyclone_data():
     cyclone_data = pd.read_csv('data/odisha_cyclone_data.csv')  # Example
     return cyclone_data
 
-
+def send_odisha_alert(message):
+    telegram_bot_token = "your_telegram_bot_token"
+    chat_id = "odisha_disaster_chat_id"
+    url = f"https://api.telegram.org/bot{telegram_bot_token}/sendMessage"
+    params = {
+        "chat_id": chat_id,
+        "text": message
+    }
+    requests.get(url, params=params)
 
 # Function to process raw data
 def process_data(raw_data):

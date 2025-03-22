@@ -27,16 +27,6 @@ def send_alert():
     # Add logic to send alerts (e.g., via SMS, email, or push notifications)
     return jsonify({"status": "Alert sent!", "data": data})
 
-def send_odisha_alert(message):
-    telegram_bot_token = "your_telegram_bot_token"
-    chat_id = "odisha_disaster_chat_id"
-    url = f"https://api.telegram.org/bot{telegram_bot_token}/sendMessage"
-    params = {
-        "chat_id": chat_id,
-        "text": message
-    }
-    requests.get(url, params=params)
-
 if __name__ == '__main__':
     app.run(debug=True)
     
