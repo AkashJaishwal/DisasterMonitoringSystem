@@ -4,16 +4,21 @@ import data_processing as dp
 app = Flask(__name__)
 
 # Route to fetch processed data
-@app.route('/api/data', methods=['GET'])
-def get_data():
-    # Fetch raw data (e.g., from an API or file)
-    raw_data = dp.fetch_raw_data()
-
-    # Process the data
-    processed_data = dp.process_data(raw_data)
-
-    # Return processed data as JSON
+@app.route('/api/odisha/weather', methods=['GET'])
+def get_odisha_weather():
+    weather_data = dp.fetch_odisha_weather()
+    processed_data = dp.process_data(weather_data)
     return jsonify(processed_data)
+
+@app.route('/api/odisha/flood', methods=['GET'])
+def get_odisha_flood_data():
+    flood_data = dp.fetch_odisha_flood_data()
+    return jsonify(flood_data.to_dict(orient='records'))
+
+@app.route('/api/odisha/cyclone', methods=['GET'])
+def get_odisha_cyclone_data():
+    cyclone_data = dp.fetch_odisha_cyclone_data()
+    return jsonify(cyclone_data.to_dict(orient='records'))
 
 # Route to send alerts
 @app.route('/api/alert', methods=['POST'])
