@@ -1,18 +1,31 @@
 import pandas as pd
 import requests
 
-# Function to fetch raw data (e.g., from an API or file)
-def fetch_raw_data():
+# Function to fetch weather data (e.g., from an API or file)
+def fetch_odisha_weather():
     # Example: Fetch weather data from OpenWeatherMap API
-    api_key = "your_openweathermap_api_key"
-    city = "New York"
+    api_key = "28c268f0c635a0e2371468cef6049e52"
+    city = "Bhubaneswar"
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
     response = requests.get(url)
     data = response.json()
+    return pd.DataFrame([data])
 
-    # Convert JSON data to a DataFrame
-    raw_data = pd.DataFrame([data])
-    return raw_data
+def fetch_odisha_flood_data():
+    # Example: Fetch flood data from CWC (pseudo-code)
+    cwc_url = "https://cwc.gov.in/flood-forecast"
+    # Use web scraping or APIs to fetch data
+    flood_data = pd.read_csv('data/odisha_flood_data.csv')  # Example
+    return flood_data
+
+def fetch_odisha_cyclone_data():
+    # Example: Fetch cyclone data from IMD (pseudo-code)
+    imd_url = "https://mausam.imd.gov.in/cyclone"
+    # Use web scraping or APIs to fetch data
+    cyclone_data = pd.read_csv('data/odisha_cyclone_data.csv')  # Example
+    return cyclone_data
+
+
 
 # Function to process raw data
 def process_data(raw_data):
